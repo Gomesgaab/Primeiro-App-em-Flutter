@@ -12,64 +12,157 @@ class _LoginPage extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 248, 228, 228),
-        body: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 100,
-              ),
-              const Icon(
-                Icons.person,
-                size: 100,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                height: 30,
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: const Row(
+        // alterando cor de fundo do corpo
+        backgroundColor: const Color.fromARGB(255, 210, 210, 215),
+        // responsividade
+        body: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              //MediaQuery e um metodo de pegar o tamanho do dispositivo
+              maxHeight: MediaQuery.of(context).size.height,
+            ),
+            child: Column(
+              //alinhamento
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // criando uma caixa de espaçamento
+                const SizedBox(
+                  height: 80,
+                ),
+                Row(
                   children: [
-                    Expanded(flex: 2, child: Text("Informe seu email:")),
-                    Expanded(flex: 3, child: Text("email:")),
+                    Expanded(child: Container()),
+                    //caixa da logo
+                    SizedBox(
+                      child: Expanded(
+                        flex: 8,
+                        child: Image.asset(
+                          'asset/Logo.png',
+                        ),
+                      ),
+                    ),
+                    //espaçamento da lateral da logo
+                    Expanded(child: Container()),
                   ],
                 ),
-              ),
-              Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                height: 30,
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: const Row(
-                  children: [
-                    Expanded(flex: 2, child: Text("Informe sua Senha:")),
-                    Expanded(flex: 3, child: Text("Senha:")),
-                  ],
+
+                //espaçamento da logo ´para textos
+                const SizedBox(
+                  height: 38,
                 ),
-              ),
-              Expanded(child: Container()),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                height: 30,
-                width: double.infinity,
-                alignment: Alignment.center,
-                color: const Color.fromARGB(255, 15, 255, 7),
-                child: const Text("Botão:"),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                alignment: Alignment.center,
-                child: const Text("Cadastro:"),
-              ),
-              const SizedBox(height: 30),
-            ],
+                //Titulos
+                const Text(
+                  "Bem-Vindo ao Sr.H",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                ),
+                const Text(
+                  "Ja possui cadastro?",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                ),
+                //espaçamento do titulo para caixa de email
+                const SizedBox(
+                  height: 30,
+                ),
+
+                // conteiner do email
+                Container(
+                  //definindo margin da caixa de texto email
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  height: 30,
+                  // dando o tamanho total da caixa que foi declarado
+                  width: double.infinity,
+                  // textFild caixa de entrada de texto/ input
+                  child: const TextField(
+                    //decoration teg para decoração do text fild
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(top: 25),
+                      //Arrumando borda e deixando so linha inferior
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blueAccent)),
+                      prefixIcon: Icon(Icons.email),
+
+                      //hintText parecida com a label, testo de informação da caixa
+                      hintText: "Email",
+                    ),
+                  ),
+                ),
+                // container senha
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  height: 30,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: const TextField(
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 25),
+                        //Arrumando borda
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blueAccent)),
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: Icon(Icons.visibility),
+                        hintText: "Senha"),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+
+                //conteiner do botão entrar
+                Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      width: 200,
+                      child: TextButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                              //border radios do botão
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20))),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 222, 222, 223))),
+                          child: const Text(
+                            "Entrar",
+                            style: TextStyle(
+                                color: Color.fromARGB(221, 76, 113, 138),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500),
+                          )),
+                    )),
+                // espacamento
+                Expanded(child: Container()),
+                // fim botão entrar
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "Esqueci Minha Senha:",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "Criar Conta",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 1, 186, 248),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w200),
+                  ),
+                ),
+                const SizedBox(height: 80),
+              ],
+            ),
           ),
         ),
       ),
