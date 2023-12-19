@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:srh/pages/Main_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,8 +9,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
-  var emailControler = TextEditingController(text: "");
-  var senhaControler = TextEditingController(text: "");
+  var emailControler =
+      TextEditingController(text: "gabrielgabiga870@gmail.com");
+  var senhaControler = TextEditingController(text: "senha");
   bool isObscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -157,6 +159,11 @@ class _LoginPage extends State<LoginPage> {
                                   const SnackBar(
                                       content:
                                           Text("Login efetuado com sucesso")));
+                              //Navegação entre as pages
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MainPage()));
                             } else {
                               //mostrando mensagem a usuário se o logim foi efetuado
                               ScaffoldMessenger.of(context).showSnackBar(
