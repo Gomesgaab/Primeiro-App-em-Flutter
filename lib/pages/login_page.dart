@@ -8,6 +8,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
+  var emailControler = TextEditingController(text: "");
+  var senhaControler = TextEditingController(text: "");
+  bool isObscureText = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -73,9 +76,13 @@ class _LoginPage extends State<LoginPage> {
                   // dando o tamanho total da caixa que foi declarado
                   width: double.infinity,
                   // textFild caixa de entrada de texto/ input
-                  child: const TextField(
+                  child: TextField(
+                    controller: emailControler,
+                    onChanged: (value) {
+                      debugPrint(value);
+                    },
                     //decoration teg para decoração do text fild
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       contentPadding: EdgeInsets.only(top: 25),
                       //Arrumando borda e deixando so linha inferior
                       focusedBorder: UnderlineInputBorder(
@@ -89,19 +96,42 @@ class _LoginPage extends State<LoginPage> {
                 ),
                 // container senha
                 Container(
+                  // dando margin na caixa de texto da senha
                   margin:
+                      //symmtric usado para deixar uma simetria de acordo com o valor que você coloca
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                   height: 30,
+                  // dando o tamanho total da caixa que foi declarado
                   width: double.infinity,
+                  //alinhamento
                   alignment: Alignment.center,
-                  child: const TextField(
+                  //caixa de entrada de texto
+                  child: TextField(
+                    controller: senhaControler,
+                    obscureText: isObscureText,
+                    onChanged: (value) {
+                      debugPrint(value);
+                    },
+                    // decorando caixa de entrada de texto
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 25),
+                        contentPadding: const EdgeInsets.only(top: 25),
                         //Arrumando borda
-                        focusedBorder: UnderlineInputBorder(
+                        focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.blueAccent)),
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: Icon(Icons.visibility),
+                        prefixIcon: const Icon(Icons.lock),
+                        //estamos detectando ações para executar algo
+                        suffixIcon: GestureDetector(
+                          //um clique
+                          onTap: () {
+                            setState(() {
+                              isObscureText = !isObscureText;
+                            });
+                          },
+                          // utilizando ternário para execução de ação
+                          child: Icon(isObscureText
+                              ? Icons.visibility_off
+                              : Icons.visibility),
+                        ),
                         hintText: "Senha"),
                   ),
                 ),
@@ -117,7 +147,24 @@ class _LoginPage extends State<LoginPage> {
                     child: SizedBox(
                       width: 200,
                       child: TextButton(
-                          onPressed: () {},
+                          // printando ingormações preencihas quando clicar no botão
+                          onPressed: () {
+                            if (emailControler.text.trim() ==
+                                    "gabrielgabiga870@gmail.com" &&
+                                senhaControler.text.trim() == "senha") {
+                              //mostrando mensagem a usuário se o logim foi efetuado com sucesso
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content:
+                                          Text("Login efetuado com sucesso")));
+                            } else {
+                              //mostrando mensagem a usuário se o logim foi efetuado
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          "Erro ao efetuar login, email ou senha incorretos")));
+                            }
+                          },
                           style: ButtonStyle(
                               //border radios do botão
                               shape: MaterialStateProperty.all(
