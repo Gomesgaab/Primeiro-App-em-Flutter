@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:srh/service/repositorios/repositorio_linguagens.dart';
-import 'package:srh/service/repositorios/repositorios_nivel.dart';
-import 'package:srh/shared/componenteText/componenteTexto.dart';
+import 'package:primeiro_app/service/repositorios/repositorio_linguagens.dart';
+import 'package:primeiro_app/service/repositorios/repositorios_nivel.dart';
+import 'package:primeiro_app/shared/componenteText/componenteTexto.dart';
 
 class DadosPaciente extends StatefulWidget {
   const DadosPaciente({super.key});

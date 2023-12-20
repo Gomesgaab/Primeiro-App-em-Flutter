@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:srh/pages/paginacao/Page1.dart';
-import 'package:srh/pages/paginacao/Page2.dart';
-import 'package:srh/shared/componente_menu/custon_menu.dart';
+import 'package:primeiro_app/pages/paginacao/Page1.dart';
+import 'package:primeiro_app/pages/paginacao/Page2.dart';
+import 'package:primeiro_app/shared/componente_menu/custon_menu.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

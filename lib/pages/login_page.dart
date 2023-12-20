@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:srh/pages/Main_page.dart';
-import 'package:srh/pages/cadastro_page.dart';
+import 'package:primeiro_app/pages/Main_page.dart';
+import 'package:primeiro_app/pages/cadastro_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

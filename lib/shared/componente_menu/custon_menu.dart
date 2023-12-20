@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:srh/pages/dados_page.dart';
+import 'package:primeiro_app/pages/dados_page.dart';
 
 class CustonMenu extends StatelessWidget {
   const CustonMenu({super.key});

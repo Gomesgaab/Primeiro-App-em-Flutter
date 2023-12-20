@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:srh/pages/Main_page.dart';
-import 'package:srh/pages/cadastro_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage2 extends StatefulWidget {
+  const LoginPage2({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPage();
+  State<LoginPage2> createState() => _LoginPage2();
 }
 
-class _LoginPage extends State<LoginPage> {
+class _LoginPage2 extends State<LoginPage2> {
   var emailControler =
       TextEditingController(text: "gabrielgabiga870@gmail.com");
   var senhaControler = TextEditingController(text: "senha");

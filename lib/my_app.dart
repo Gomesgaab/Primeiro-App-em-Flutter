@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:srh/pages/Main_page.dart';
-import 'package:srh/pages/login_page.dart';
+import 'package:primeiro_app/pages/logins.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.blue,
           //Fonte/estilo de texto principal
           textTheme: GoogleFonts.abhayaLibreTextTheme()),
-      home: const LoginPage(),
+      home: const LoginPage2(),
     );
   }
 }
