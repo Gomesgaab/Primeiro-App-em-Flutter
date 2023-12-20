@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:srh/pages/dados_page.dart';
 import 'package:srh/pages/paginacao/Page1.dart';
 import 'package:srh/pages/paginacao/Page2.dart';
+import 'package:srh/shared/componente_menu/custon_menu.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -20,71 +20,7 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         //menu lateral
-        drawer: Drawer(
-          //editando corpo do menu
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // editando (seus dados)
-                //tamanho da caixa
-                SizedBox(
-                  height: 35,
-                  //dando função de botão
-                  child: InkWell(
-                    //row deixando lado a lado
-                    child: const Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 0,
-                          child: Icon(Icons.medical_information),
-                        ),
-                        SizedBox(
-                          //distanciando icon do texto
-                          width: 8,
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Text(
-                            "Seus dados",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DadosPaciente()));
-                    },
-                  ),
-                ),
-                const Divider(),
-                const Text(
-                  "Minha Conta",
-                  style: TextStyle(fontSize: 16),
-                ),
-                const Divider(),
-                const Text(
-                  "Configurações",
-                  style: TextStyle(fontSize: 16),
-                ),
-                const Divider(),
-                InkWell(
-                  child: const Text(
-                    "Sair",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  onTap: () {},
-                )
-              ],
-            ),
-          ),
-        ),
+        drawer: const CustonMenu(),
         appBar: AppBar(
           //titulo da appBar
           title: const Text("Home"),
