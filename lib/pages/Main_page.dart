@@ -59,7 +59,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Dados()));
+                              builder: (context) => DadosPaciente()));
                     },
                   ),
                 ),
