@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:srh/pages/dados_page.dart';
-import 'package:srh/pages/pagesview/Page2.dart';
-import 'package:srh/pages/pagesview/page1.dart';
+import 'package:srh/pages/paginacao/Page1.dart';
+import 'package:srh/pages/paginacao/Page2.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -59,7 +59,7 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DadosPaciente()));
+                              builder: (context) => const DadosPaciente()));
                     },
                   ),
                 ),

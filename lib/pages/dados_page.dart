@@ -1,4 +1,7 @@
+import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:srh/service/repositorios/repositorio_linguagens.dart';
+import 'package:srh/service/repositorios/repositorios_nivel.dart';
 import 'package:srh/shared/componenteText/componenteTexto.dart';
 
 class DadosPaciente extends StatefulWidget {
@@ -14,7 +17,37 @@ class _DadosPacienteState extends State<DadosPaciente> {
   //crirando uma variavel de controle de Date
   var crontroleDate = TextEditingController(text: "");
   DateTime? dataNacimento;
+  var nivelRepository = NivelRepository();
+  var niveis = [];
+  // criando variavel vazia para receber valor da RadioListTile
+  var nivelSelecionado = "";
+  //variavel para celeção de linguagens
+  var linguagenRepository = LinguagensRepository();
+  var linguagemSelect = [];
+  var linguagens = [];
+  //variavel de nivel de dor
+  double nivelDeDor = 0;
+  //variavel de dias com dor
+  int quantosDias = 0;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    linguagens = linguagenRepository.linguagensRepository();
+    niveis = nivelRepository.retornaNivel();
+    super.initState();
+  }
+
+  List<DropdownMenuItem<int>> returnDias(int quantidadeDias) {
+    var dias = <DropdownMenuItem<int>>[];
+    for (var i = 0; i <= quantidadeDias; i++) {
+      dias.add(DropdownMenuItem(
+        child: Text(i.toString()),
+        value: i,
+      ));
+    }
+    return dias;
+  }
   //um exemplo de utilização de componente para edição de todos os dados de texto de uma vez
   /* Text returnText(String texto) {
     return Text(
@@ -32,17 +65,17 @@ class _DadosPacienteState extends State<DadosPaciente> {
       body: Padding(
         // editando posição
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        //utilizando listview para rolagem de tela, sendo assim não ocorrera o erro de indentificação de tamanho de tela.
+        child: ListView(
           children: [
-            const textedition(
+            const Textedition(
               texto: "Nome: ",
             ),
             // iniciando uma entrada de texto
             TextField(
               controller: crontroleName,
             ),
-            const textedition(
+            const Textedition(
               texto: "Data: ",
             ),
             TextField(
@@ -62,11 +95,76 @@ class _DadosPacienteState extends State<DadosPaciente> {
                 }
               },
             ),
+            const Textedition(texto: "Niveil: "),
+            Column(
+                //.map ele pega uma lista de valores e retorna essa lista com novos valores (nivel)
+                children: niveis
+                    // lista niveis recebe novo valor de nivel
+                    .map((nivel) => RadioListTile(
+                        title: Text(nivel.toString()),
+                        value: nivel.toString(),
+                        //groupValue define o grupo selecionado/ mostra no check
+                        groupValue: nivelSelecionado,
+                        onChanged: (value) {
+                          setState(() {
+                            nivelSelecionado = value.toString();
+                          });
+                        }))
+                    .toList()),
+            //checkBox Linguagens
+            const Textedition(texto: "Linguagens: "),
+            Column(
+                children: linguagens
+                    .map((linguagem) => CheckboxListTile(
+                        title: Text(linguagem),
+                        value: linguagemSelect.contains(linguagem),
+                        onChanged: (bool? value) {
+                          if (value!) {
+                            setState(() {
+                              linguagemSelect.add(linguagem);
+                            });
+                          } else {
+                            setState(() {
+                              linguagemSelect.remove(linguagem);
+                            });
+                          }
+                        }))
+                    .toList()),
+            //editando nivel de dor
+            Textedition(
+                //exibindo na tela o nivel de dor do paciente(round: arredondar valor)
+                texto: "Nivel de Dor: ${nivelDeDor.round().toString()}"),
+            //arrastar barrinha
+            Slider(
+                min: 0,
+                max: 10,
+                value: nivelDeDor,
+                onChanged: (double value) {
+                  setState(() {
+                    nivelDeDor = value;
+                  });
+                }),
+
+            const Textedition(texto: "Ja fáz Quantos Dias?"),
+            DropdownButton(
+                value: quantosDias,
+                //colocando setinha de drop no canto direito
+                isExpanded: true,
+                items: returnDias(7),
+                onChanged: (value) {
+                  setState(() {
+                    quantosDias = int.parse(value.toString());
+                  });
+                }),
             //botão de texto para salvar
             TextButton(
                 onPressed: () {
                   debugPrint(crontroleName.text);
                   print(dataNacimento);
+                  print(nivelSelecionado);
+                  print(linguagemSelect);
+                  print(nivelDeDor.round());
+                  print(quantosDias);
                 },
                 child: const Text("Salvar"))
           ],
