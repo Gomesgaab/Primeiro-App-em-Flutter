@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:srh/pages/Main_page.dart';
+import 'package:srh/pages/cadastro_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -96,6 +97,7 @@ class _LoginPage extends State<LoginPage> {
                     ),
                   ),
                 ),
+
                 // container senha
                 Container(
                   // dando margin na caixa de texto da senha
@@ -202,10 +204,14 @@ class _LoginPage extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                  alignment: Alignment.center,
+                TextButton(
+                  onPressed: () {
+                    //Navegação entre as página cadastro
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TelaCadastro()));
+                  },
                   child: const Text(
                     "Criar Conta",
                     style: TextStyle(
