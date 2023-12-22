@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/pages/paginacao/Page1.dart';
-import 'package:primeiro_app/pages/paginacao/Page2.dart';
-import 'package:primeiro_app/pages/paginacao/tarefa_page.dart';
 import 'package:primeiro_app/shared/componente_menu/custon_menu.dart';
 
 class MainPage extends StatefulWidget {
@@ -12,53 +9,40 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  //dizendo que pagina se inicia em 0
-  PageController controller = PageController(initialPage: 0);
-  int positionPage = 0;
   @override
   Widget build(BuildContext context) {
     //area  separada
-    return SafeArea(
-      child: Scaffold(
-        //menu lateral
-        drawer: const CustonMenu(),
-        appBar: AppBar(
-          //titulo da appBar
-          title: const Text("Home"),
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 120,
+        backgroundColor: const Color.fromARGB(116, 155, 194, 1000),
+        actions: [
+          // logo
+          Image.asset(
+            'asset/Logo.png',
+            height: 67.6,
+          ),
+          const SizedBox(
+            width: 50,
+          ),
+        ],
+      ),
+      //menu lateral
+      body: Expanded(
+        child: Container(
+          color: const Color.fromARGB(116, 155, 194, 1000),
         ),
-        //construindo body/corpo
-        body: Column(
-          children: [
-            Expanded(
-              //paginação
-              child: PageView(
-                controller: controller,
-                onPageChanged: (value) {
-                  setState(() {
-                    positionPage = value;
-                  });
-                },
-                scrollDirection: Axis.vertical,
-                children: const [Page1(), Page2(), TarefaPage()],
-              ),
-            ),
-
-            //footernavidator
-            BottomNavigationBar(
-                onTap: (value) {
-                  controller.jumpToPage(value);
-                },
-                currentIndex: positionPage,
-                items: const [
-                  BottomNavigationBarItem(
-                      label: "Home", icon: Icon(Icons.home)),
-                  BottomNavigationBarItem(
-                      label: "Dados", icon: Icon(Icons.rocket)),
-                  BottomNavigationBarItem(
-                      label: "lista", icon: Icon(Icons.list_alt)),
-                ]),
-          ],
-        ),
+      ),
+      drawer: const CustonMenu(),
+      //construindo body/corpo
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }
