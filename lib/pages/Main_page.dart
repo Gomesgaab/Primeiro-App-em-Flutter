@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:primeiro_app/pages/paginacao/Page1.dart';
 import 'package:primeiro_app/pages/paginacao/Page2.dart';
+import 'package:primeiro_app/pages/paginacao/tarefa_page.dart';
 import 'package:primeiro_app/shared/componente_menu/custon_menu.dart';
 
 class MainPage extends StatefulWidget {
@@ -38,9 +39,11 @@ class _MainPageState extends State<MainPage> {
                   });
                 },
                 scrollDirection: Axis.vertical,
-                children: const [Page1(), Page2()],
+                children: const [Page1(), Page2(), TarefaPage()],
               ),
             ),
+
+            //footernavidator
             BottomNavigationBar(
                 onTap: (value) {
                   controller.jumpToPage(value);
@@ -51,6 +54,8 @@ class _MainPageState extends State<MainPage> {
                       label: "Home", icon: Icon(Icons.home)),
                   BottomNavigationBarItem(
                       label: "Dados", icon: Icon(Icons.rocket)),
+                  BottomNavigationBarItem(
+                      label: "lista", icon: Icon(Icons.list_alt)),
                 ]),
           ],
         ),

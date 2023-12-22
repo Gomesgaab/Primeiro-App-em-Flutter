@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/pages/Main_page.dart';
+import 'package:primeiro_app/pages/main_page.dart';
 import 'package:primeiro_app/pages/cadastro_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -26,10 +26,10 @@ class _LoginPage extends State<LoginPage> {
             constraints: BoxConstraints(
               //MediaQuery e um metodo de pegar o tamanho do dispositivo
               maxHeight: MediaQuery.of(context).size.height,
+              maxWidth: MediaQuery.of(context).size.width,
             ),
             child: Column(
               //alinhamento
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // criando uma caixa de espaçamento
                 const SizedBox(
@@ -157,10 +157,10 @@ class _LoginPage extends State<LoginPage> {
                                     "gabrielgabiga870@gmail.com" &&
                                 senhaControler.text.trim() == "senha") {
                               //mostrando mensagem a usuário se o logim foi efetuado com sucesso
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content:
-                                          Text("Login efetuado com sucesso")));
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //     const SnackBar(
+                              //         content:
+                              //             Text("Login efetuado com sucesso")));
                               //Navegação entre as pages
                               Navigator.pushReplacement(
                                   context,

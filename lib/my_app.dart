@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:primeiro_app/pages/login_page.dart';
-import 'package:primeiro_app/pages/logins.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
