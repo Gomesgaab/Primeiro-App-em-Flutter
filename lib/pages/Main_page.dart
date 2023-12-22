@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:primeiro_app/shared/componente_menu/custon_menu.dart';
 
@@ -9,6 +10,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int index = 1;
   @override
   Widget build(BuildContext context) {
     //area  separada
@@ -28,21 +30,26 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       //menu lateral
+      drawer: const CustonMenu(),
+      //construindo body/corpo
       body: Expanded(
         child: Container(
           color: const Color.fromARGB(116, 155, 194, 1000),
         ),
       ),
-      drawer: const CustonMenu(),
-      //construindo body/corpo
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {},
-          ),
+      //iniciando Navif=gation bar
+      bottomNavigationBar: CurvedNavigationBar(
+        items: const <Widget>[
+          Icon(Icons.dock, size: 30),
+          Icon(Icons.home_filled, size: 30),
+          Icon(Icons.list, size: 30)
         ],
+        backgroundColor: const Color.fromARGB(116, 155, 194, 1000),
+        index: index,
+        height: 70,
+        onTap: (index) => setState(() {
+          this.index = index;
+        }),
       ),
     );
   }
