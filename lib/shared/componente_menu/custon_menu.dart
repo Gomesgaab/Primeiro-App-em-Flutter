@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:primeiro_app/pages/dados_page.dart';
 import 'package:primeiro_app/pages/login_page.dart';
+import 'package:primeiro_app/pages/paginacao/configuracao_page.dart';
 
 class CustonMenu extends StatelessWidget {
   const CustonMenu({super.key});
@@ -38,6 +39,8 @@ class CustonMenu extends StatelessWidget {
                   });
             },
             child: UserAccountsDrawerHeader(
+                decoration: const BoxDecoration(
+                    color: Color.fromRGBO(70, 130, 169, 10)),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.cyan,
                   child: Image.asset('asset/avatar.png'),
@@ -47,6 +50,27 @@ class CustonMenu extends StatelessWidget {
           ),
 
           // editando (seus dados)
+          InkWell(
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Row(
+                children: [
+                  Icon(Icons.person_3),
+                  //distanciando icon do texto
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    "Minha Conta",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+            //efeito de clic
+            onTap: () {},
+          ),
+          const Divider(),
           //tamanho da caixa
           InkWell(
             //row deixando lado a lado
@@ -92,29 +116,6 @@ class CustonMenu extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Row(
                 children: [
-                  Icon(Icons.person_3),
-                  //distanciando icon do texto
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    "Minha Conta",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
-              ),
-            ),
-            //efeito de clic
-            onTap: () {},
-          ),
-          //divisoria
-          const Divider(),
-
-          InkWell(
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Row(
-                children: [
                   Icon(Icons.engineering_rounded),
                   //distanciando icon do texto
                   SizedBox(
@@ -128,7 +129,12 @@ class CustonMenu extends StatelessWidget {
               ),
             ),
             //efeito de clic/ação ao clicar
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (contex) => const ConfiguracaoPage()));
+            },
           ),
           //divisoria
           const Divider(),
